@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
 use App\Models\Talent;
-
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -71,6 +72,36 @@ class TalentController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+          
+          User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+          ]);
+
+          $scanUser = User::orderBy('created_at', 'desc')->first();
+          // return dd($scanUser->id);
+          Talent::create([
+            'user_id' => $scanUser->id,
+            'kategori_talent_id' => 2,
+          ]);
+
+          $data = 'berhasil';
+          return response()->json([
+            'status' => 201,
+            'status_message' => 'success',
+            'text_message' => 'Data berhasil disimpan',
+            'products' => $data,
+          ], 200);
+
+        } catch (\Excetption $e) {
+          return response()->json([
+            'status' => 'error',
+            'message' => 'Gagal menyimpan data',
+            'error' => $e->getMessage(),
+          ], 500);
+        }
     }
 
     /**
@@ -82,6 +113,26 @@ class TalentController extends Controller
     public function show($id)
     {
         //
+        try {
+          // $data = 'ID Talent '.$id.' Berhasil';
+          
+          $data = Talent::where('id', $id)->first();
+          // $data = BarangStok::findOrFail($id);
+
+          return response()->json([
+            'status' => 200,
+            'status_message' => 'success',
+            'text_message' => 'Data berhasil ditampilkan',
+            'products' => $data,
+          ], 200);
+
+        } catch (\Excetption $e) {
+          return response()->json([
+            'status' => 'error',
+            'message' => 'Gagal menyimpan data',
+            'error' => $e->getMessage(),
+          ], 500);
+        }
     }
 
     /**
@@ -94,6 +145,43 @@ class TalentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        try {
+          // return dd($request->coba);
+          // $data = 'berhasil';
+          // $task = Talent::findOrFail($id);
+          // $task->update([
+          //   'nickname' => $request->name,
+          // ]);
+
+          // Talent::where('id',$id)->update([
+          //   // 'nama' => $request->nama,
+          //   // 'slug' => Str::slug($request->nama),
+          //   // 'deskripsi' => $request->deskripsi,
+          //   // 'nama' => $request->nama,
+          //   // 'slug' => Str::slug($request->nama),
+          //   'nickname' => $request->nickname,
+          // ]);
+
+          $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+          ];
+
+          return response()->json([
+            'status' => 200,
+            'status_message' => 'success',
+            'text_message' => 'Data berhasil mengubah data',
+            'products' => $data,
+          ], 200);
+
+        } catch (\Excetption $e) {
+          return response()->json([
+            'status' => 'error',
+            'message' => 'Gagal menyimpan data',
+            'error' => $e->getMessage(),
+          ], 500);
+        }
     }
 
     /**
@@ -105,5 +193,39 @@ class TalentController extends Controller
     public function destroy($id)
     {
         //
+        // try {
+        //   $data = 'berhasil';
+        //   return response()->json([
+        //     'status' => 200,
+        //     'status_message' => 'success',
+        //     'text_message' => 'Data berhasil dihapus',
+        //     'products' => $data,
+        //   ], 200);
+
+        // } catch (\Excetption $e) {
+        //   return response()->json([
+        //     'status' => 'error',
+        //     'message' => 'Gagal menyimpan data',
+        //     'error' => $e->getMessage(),
+        //   ], 500);
+        // }
+
+        try {
+          // $data = BarangStok::find($id);
+        	// $data->delete();
+          
+          $barang = Talent::findOrFail($id);
+          $barang->delete();
+          
+          return response()->json([
+              'message' => 'Data berhasil dihapus'
+          ], 204);
+
+        } catch (\Exception $e) {
+            
+          return response()->json([
+            'message' => 'Data tidak ditemukan'
+          ], 404);
+        }
     }
 }

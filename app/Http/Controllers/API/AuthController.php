@@ -94,7 +94,7 @@ class AuthController extends Controller
           ]);
   
           $data = [
-            'nama' => $request->name,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
           ];

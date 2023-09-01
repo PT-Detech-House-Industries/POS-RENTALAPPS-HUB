@@ -22,7 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // talent
 Route::get('/talent', [TalentController::class, 'index']);
-
+Route::post('/talent/store', [TalentController::class, 'store']);
+Route::get('/talent/{id}/show', [TalentController::class, 'show']);
+Route::put('/talent/{id}/update', [TalentController::class, 'update']);
+Route::delete('/talent/{id}/delete', [TalentController::class, 'destroy']);
 // auth
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'store']);
