@@ -21,6 +21,7 @@ class Talent extends Model
 
     protected $fillable = [
         'user_id',
+        'kategori_talent_id',
         'kode_id',
         'kode_nomor',
         'nickname',

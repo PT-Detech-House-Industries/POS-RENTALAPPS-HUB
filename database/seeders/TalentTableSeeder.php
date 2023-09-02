@@ -18,7 +18,7 @@ class TalentTableSeeder extends Seeder
         //
         Talent::create([
             'user_id' => 2,
-            'kategori_talent_id' => 2,
+            // 'kategori_talent_id' => 2,
             'kode_id' => 'TL', // kode data
             'kode_nomor' => '00001', //nomor urut data
             'nickname' => 'Joy', // nama Talent
