@@ -1,3 +1,4 @@
+<h3><a href="/">back</a></h3>
 <a href="{{ route('user.create') }}">tambah data</a>
 <table>
   <thead>

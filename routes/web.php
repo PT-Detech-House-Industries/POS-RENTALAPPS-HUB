@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TalentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -16,12 +18,24 @@ use RealRashid\SweetAlert\Facades\Alert;
 |
 */
 
-// Route::get('/', function () {
-//     Alert::success('Success', 'You have been successfully logged in.')->autoclose(3000);
-//     return view('welcome');
-//     // return view('talent.dashboard');
-// });
+Route::get('/', function () {
+    return view('dashboard');
+});
 
+Route::get('/auth/google', [AuthController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
+Route::get('/auth/facebook', [AuthController::class, 'redirectToFacebook']);
+Route::get('/auth/facebook/callback', [AuthController::class, 'handleFacebookCallback']);
+
+// client
+Route::get('/client', [ClientController::class, 'index'])->name('client.index');
+Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
+Route::post('/client/create', [ClientController::class, 'store'])->name('client.store');
+Route::get('/client/{id}/detail', [ClientController::class, 'show'])->name('client.detail');
+Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('client.edit');
+Route::put('/client/{id}/edit', [ClientController::class, 'update'])->name('client.update');
+Route::get('/client/{id}/destroy', [ClientController::class, 'destroy'])->name('client.destroy');
 // user
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');

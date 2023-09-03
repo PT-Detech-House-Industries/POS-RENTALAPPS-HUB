@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             
             UsersTableSeeder::class,
             TalentTableSeeder::class,
+            ClientTableSeeder::class,
             // TalentAkunPembayaranTableSeeder::class,
             // TalentSifatTableSeeder::class,
             // TalentFisikTableSeeder::class,
