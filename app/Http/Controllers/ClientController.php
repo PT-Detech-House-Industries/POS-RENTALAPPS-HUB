@@ -17,7 +17,9 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
-
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ClientController extends Controller
 {
@@ -169,9 +171,49 @@ class ClientController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('client.create') // Ganti dengan rute yang sesuai
+            return redirect()->route('client.edit',[$id]) // Ganti dengan rute yang sesuai
                 ->withErrors($validator)
                 ->withInput();
+        }
+
+        // menyimpan data gambar di folder dan
+        // menamakan nama folder berdasarkan kategori
+        // kategori dari barang tersebut di simpan
+        // di $namafile
+
+        if ($request->hasFile('profile_picture')) {
+            $namafile = $request->input('nick_name');
+            
+            $gambar = $request->file('profile_picture');
+            $namaGambar = time() . '-' . $gambar->getClientOriginalName();
+            $path = 'foto-produk/' . $namafile . '/'; // Path penyimpanan
+        
+            // $gambar->move($path, $namaGambar, 'public');
+            // $this->createDirectoryIfNotExists(public_path($path));
+            // Manipulasi gambar (resize dan simpan versi terkompresi)
+
+            if (!File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+                // $mode = 0777 mengatur izin untuk direktori yang baru dibuat
+            }
+
+            $compressedImage = Image::make($gambar)
+            ->resize(500, 500, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })
+            ->encode('jpg', 75)
+            ->save(public_path('foto-produk/'.$namafile.'/' . $namaGambar)); 
+
+            // Cek apakah direktori sudah ada, jika belum, buat direktori baru
+            // if (!Storage::exists($path)) {
+            //     Storage::makeDirectory($path, 0777, true); // Buat direktori dengan izin 0777
+            // }
+
+            // $gambar->move($path,$namaGambar);
+        
+            // Simpan gambar ke direktori yang baru dibuat
+            // $gambar->move($path);
         }
         
         // Update data pengguna berdasarkan ID
@@ -182,13 +224,8 @@ class ClientController extends Controller
             'nick_name' => $request->input('nick_name'),
             'birthday' => $request->input('birthday'),
             'phone' => $request->input('phone'),
+            'profile_picture' => $namaGambar,
         ]);
-
-        // Upload dan simpan gambar profil jika ada
-        if ($request->hasFile('profile_picture')) {
-            $imagePath = $request->file('profile_picture')->store('profile_pictures', 'public');
-            $client->update(['profile_picture' => $imagePath]);
-        }
 
         User::where('id',$client->user_id)->update([
             'name' => $request->name,

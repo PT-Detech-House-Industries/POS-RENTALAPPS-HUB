@@ -45,7 +45,13 @@ Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit'
 Route::put('/user/{id}/edit', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{id}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
 // talent
-Route::get('/talent', [TalentController::class, 'index']);
+Route::get('/talent', [TalentController::class, 'index'])->name('talent.index');
+Route::get('/talent/create', [TalentController::class, 'create'])->name('talent.create');
+Route::post('/talent/create', [TalentController::class, 'store'])->name('talent.store');
+Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('talent.detail');
+Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('talent.edit');
+Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('talent.update');
+Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('talent.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

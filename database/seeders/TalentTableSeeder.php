@@ -16,13 +16,23 @@ class TalentTableSeeder extends Seeder
     public function run()
     {
         //
+        // Talent::create([
+        //     'user_id' => 2,
+        //     // 'kategori_talent_id' => 2,
+        //     'kode_id' => 'TL', // kode data
+        //     'kode_nomor' => '00001', //nomor urut data
+        //     'nickname' => 'Joy', // nama Talent
+        //     'slug' => 'joy', // unutk link 
+        // ]);
+
         Talent::create([
-            'user_id' => 2,
-            // 'kategori_talent_id' => 2,
-            'kode_id' => 'TL', // kode data
-            'kode_nomor' => '00001', //nomor urut data
-            'nickname' => 'Joy', // nama Talent
-            'slug' => 'joy', // unutk link 
+            'user_id' => 3,
+            'gender' => 'Female',
+            'fullname' => 'Taira',
+            'nick_name' => 'tiara.female',
+            'birthday' => '1998-05-15',
+            'phone' => '1234567890',
+            'profile_picture' => 'edward_profile.jpg',
         ]);
     }
 }

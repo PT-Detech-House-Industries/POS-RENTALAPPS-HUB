@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('backup_password');
             $table->enum('role', ['client', 'talent', 'admin', 'owner']);
             $table->rememberToken();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

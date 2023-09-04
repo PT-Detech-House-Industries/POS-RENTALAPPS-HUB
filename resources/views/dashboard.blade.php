@@ -2,6 +2,8 @@
 <a href="{{ route('user.index') }}">Users All</a>
 <br>
 <a href="{{ route('client.index') }}">Client</a>
+<br>
+<a href="{{ route('talent.index') }}">Talent</a>
 <br><br>
 <p>daftar dengan akun social media (masih gagal)</p>
 <a href="{{ url('/auth/google') }}">Masuk dengan Google</a>

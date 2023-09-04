@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('birthday')->nullable(); // Birthday column as nullable
             $table->string('phone')->nullable(); // Phone column as nullable
             $table->string('profile_picture')->nullable(); // Profile picture column as nullable
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         
             $table->foreign('user_id')
