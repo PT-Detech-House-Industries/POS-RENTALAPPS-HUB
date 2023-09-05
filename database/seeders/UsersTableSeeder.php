@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        //
         User::create([
             'name' => 'owner',
             'email' => 'owner@nihonuwu.com',
@@ -32,6 +33,206 @@ class UsersTableSeeder extends Seeder
             'backup_password' => Crypt::encrypt('12345678'),
             'role' => 'admin',
         ]);
+        
+        // User::create([
+        //     'name' => 'Nur Fitria Andani',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Aulia Nafisah',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Vicka putri triarti purwantoro',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Maria Anes',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+        
+        // User::create([
+        //     'name' => 'Devina bunga putri setyana',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Deniyati Tandiseru',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Intan Auwani Iskandar',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Felicia Soetandy',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Putri Zahra Dwinata',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Iftah Awaliyah Afni',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Indah kurnia',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'sri oktalia gunawan',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Nabila Valya Syahira',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Islamiah Suci Cahyaningati',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Amelia Nabila Fitrianti',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Lolyta Wahyuning Pribadi',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Claudya Calvina Izumi',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Eva Zussella',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Vina Noviani',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Dwi Murdiasih',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Debby Ariesca',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Anastasya',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Veridiana irene',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Zaskia nur aini',
+        //     'email' => 'joy@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'Edward',
+        //     'email' => 'Edward@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'client',
+        // ]);
 
         User::create([
             'name' => 'joy',
