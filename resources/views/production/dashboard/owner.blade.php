@@ -9,9 +9,9 @@
 <br>
 <a href="{{ route('owner.order.service.index') }}">Order Service</a>
 <br>
-<a href="{{ route('order.temp.index') }}">Order Temp Service</a>
+<a href="{{ route('owner.order.temp.index') }}">Order Temp Service</a>
 <br>
-<a href="{{ route('order.detail.index') }}">Order Detail Service</a>
+<a href="{{ route('owner.order.detail.index') }}">Order Detail Service</a>
 <!-- <br>
 <a href="#">Payment Service</a>
 <br>

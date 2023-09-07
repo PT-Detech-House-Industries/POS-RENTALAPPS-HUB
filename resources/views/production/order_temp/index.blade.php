@@ -1,6 +1,6 @@
 <h3><a href="/">back</a></h3>
-<a href="{{ route('order.temp.create') }}">tambah data</a> | 
-<a href="{{ route('order.temp.process') }}">process data</a>
+<a href="{{ route('owner.order.temp.create') }}">tambah data</a> | 
+<a href="{{ route('owner.order.temp.process') }}">process data</a>
 <table>
   <thead>
     <tr>
@@ -23,9 +23,9 @@
     <td>{{ $d->end_service }}</td>
     <td>{{ $d->total_payment }}</td>
     <td>{{ $d->status_order }}</td>
-    <td><a href="{{ route('order.service.detail',[$d->id]) }}">Details</a></td>
-    <td><a href="{{ route('order.service.edit',[$d->id]) }}">Edit</a></td>
-    <td><a href="{{ route('order.service.destroy',[$d->id]) }}">Hapus</a></td>
+    <td><a href="{{ route('owner.order.service.detail',[$d->id]) }}">Details</a></td>
+    <td><a href="{{ route('owner.order.service.edit',[$d->id]) }}">Edit</a></td>
+    <td><a href="{{ route('owner.order.service.destroy',[$d->id]) }}">Hapus</a></td>
   </tr>
   @endforeach
 </table>
