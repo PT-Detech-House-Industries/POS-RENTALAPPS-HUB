@@ -8,7 +8,7 @@
     </div>
 @endif
 
-<form class="form-horizontal" role="form" action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" action="{{ route('owner.user.store') }}" method="post" enctype="multipart/form-data">
   @csrf
   @method('POST')	
   <label for="name">name</label>

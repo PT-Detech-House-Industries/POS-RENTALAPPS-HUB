@@ -87,13 +87,16 @@ class ClientController extends Controller
                 ->withInput();
         }
 
-        User::create([
+        $client = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
             'password' => Hash::make($request->password),
             'backup_password' => Crypt::encrypt($request->password),
         ]);
+        
+        // membuat akses untuk akun.
+        $client->assignRole($request->role);
 
         $scanUser = User::orderBy('created_at', 'desc')->first();
         // return dd($scanUser->id);
@@ -102,7 +105,7 @@ class ClientController extends Controller
             'user_id' => $scanUser->id,
         ]);
 
-        return Redirect::route('client.index');
+        return Redirect::route('owner.client.index');
         // return "bercanda";
     }
 

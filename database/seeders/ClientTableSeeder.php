@@ -26,14 +26,14 @@ class ClientTableSeeder extends Seeder
             'profile_picture' => 'edward_profile.jpg',
         ]);
 
-        Client::create([
-            'user_id' => 6,
-            'gender' => 'Male',
-            'fullname' => 'Budi',
-            'nick_name' => 'budi.mangare',
-            'birthday' => '1990-05-15',
-            'phone' => '1234567890',
-            'profile_picture' => 'edward_profile.jpg',
-        ]);
+        // Client::create([
+        //     'user_id' => 6,
+        //     'gender' => 'Male',
+        //     'fullname' => 'Budi',
+        //     'nick_name' => 'budi.mangare',
+        //     'birthday' => '1990-05-15',
+        //     'phone' => '1234567890',
+        //     'profile_picture' => 'edward_profile.jpg',
+        // ]);
     }
 }

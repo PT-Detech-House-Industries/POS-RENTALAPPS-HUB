@@ -48,38 +48,38 @@ Route::get('/dashboard', function () {
 // route untuk owner
 Route::prefix('owner')->group(function () {
     // talent
-    Route::get('/talent', [TalentController::class, 'index'])->name('talent.index');
-    Route::get('/talent/create', [TalentController::class, 'create'])->name('talent.create');
-    Route::post('/talent/create', [TalentController::class, 'store'])->name('talent.store');
-    Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('talent.detail');
-    Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('talent.edit');
-    Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('talent.update');
-    Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('talent.destroy');
+    Route::get('/talent', [TalentController::class, 'index'])->name('owner.talent.index');
+    Route::get('/talent/create', [TalentController::class, 'create'])->name('owner.talent.create');
+    Route::post('/talent/create', [TalentController::class, 'store'])->name('owner.talent.store');
+    Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('owner.talent.detail');
+    Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('owner.talent.edit');
+    Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('owner.talent.update');
+    Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('owner.talent.destroy');
     // order-detail
-    Route::get('/order-detail', [OrderDetailController::class, 'index'])->name('order.detail.index');
-    Route::get('/order-detail/create', [OrderDetailController::class, 'create'])->name('order.detail.create');
-    Route::post('/order-detail/create', [OrderDetailController::class, 'store'])->name('order.detail.store');
-    Route::get('/order-detail/{id}/detail', [OrderDetailController::class, 'show'])->name('order.detail.detail');
-    Route::get('/order-detail/{id}/edit', [OrderDetailController::class, 'edit'])->name('order.detail.edit');
-    Route::put('/order-detail/{id}/edit', [OrderDetailController::class, 'update'])->name('order.detail.update');
-    Route::get('/order-detail/{id}/destroy', [OrderDetailController::class, 'destroy'])->name('order.detail.destroy');
+    Route::get('/order-detail', [OrderDetailController::class, 'index'])->name('owner.order.detail.index');
+    Route::get('/order-detail/create', [OrderDetailController::class, 'create'])->name('owner.order.detail.create');
+    Route::post('/order-detail/create', [OrderDetailController::class, 'store'])->name('owner.order.detail.store');
+    Route::get('/order-detail/{id}/detail', [OrderDetailController::class, 'show'])->name('owner.order.detail.detail');
+    Route::get('/order-detail/{id}/edit', [OrderDetailController::class, 'edit'])->name('owner.order.detail.edit');
+    Route::put('/order-detail/{id}/edit', [OrderDetailController::class, 'update'])->name('owner.order.detail.update');
+    Route::get('/order-detail/{id}/destroy', [OrderDetailController::class, 'destroy'])->name('owner.order.detail.destroy');
     // order-temp
-    Route::get('/order-temp', [OrderTempController::class, 'index'])->name('order.temp.index');
-    Route::get('/order-temp/create', [OrderTempController::class, 'create'])->name('order.temp.create');
-    Route::post('/order-temp/create', [OrderTempController::class, 'store'])->name('order.temp.store');
-    Route::get('/order-temp/process', [OrderTempController::class, 'process'])->name('order.temp.process');
+    Route::get('/order-temp', [OrderTempController::class, 'index'])->name('owner.order.temp.index');
+    Route::get('/order-temp/create', [OrderTempController::class, 'create'])->name('owner.order.temp.create');
+    Route::post('/order-temp/create', [OrderTempController::class, 'store'])->name('owner.order.temp.store');
+    Route::get('/order-temp/process', [OrderTempController::class, 'process'])->name('owner.order.temp.process');
     // Route::get('/order-temp/{id}/detail', [OrderTempController::class, 'show'])->name('order.temp.detail');
     // Route::get('/order-temp/{id}/edit', [OrderTempController::class, 'edit'])->name('order.temp.edit');
     // Route::put('/order-temp/{id}/edit', [OrderTempController::class, 'update'])->name('order.temp.update');
     // Route::get('/order-temp/{id}/destroy', [OrderTempController::class, 'destroy'])->name('order.temp.destroy');
     // order-service
-    Route::get('/order-service', [OrderServiceController::class, 'index'])->name('order.service.index');
-    Route::get('/order-service/create', [OrderServiceController::class, 'create'])->name('order.service.create');
-    Route::post('/order-service/create', [OrderServiceController::class, 'store'])->name('order.service.store');
-    Route::get('/order-service/{id}/detail', [OrderServiceController::class, 'show'])->name('order.service.detail');
-    Route::get('/order-service/{id}/edit', [OrderServiceController::class, 'edit'])->name('order.service.edit');
-    Route::put('/order-service/{id}/edit', [OrderServiceController::class, 'update'])->name('order.service.update');
-    Route::get('/order-service/{id}/destroy', [OrderServiceController::class, 'destroy'])->name('order.service.destroy');
+    Route::get('/order-service', [OrderServiceController::class, 'index'])->name('owner.order.service.index');
+    Route::get('/order-service/create', [OrderServiceController::class, 'create'])->name('owner.order.service.create');
+    Route::post('/order-service/create', [OrderServiceController::class, 'store'])->name('owner.order.service.store');
+    Route::get('/order-service/{id}/detail', [OrderServiceController::class, 'show'])->name('owner.order.service.detail');
+    Route::get('/order-service/{id}/edit', [OrderServiceController::class, 'edit'])->name('owner.order.service.edit');
+    Route::put('/order-service/{id}/edit', [OrderServiceController::class, 'update'])->name('owner.order.service.update');
+    Route::get('/order-service/{id}/destroy', [OrderServiceController::class, 'destroy'])->name('owner.order.service.destroy');
     // service-talent
     Route::get('/service-talent', [ServiceTalentController::class, 'index'])->name('owner.service.talent.index');
     Route::get('/service-talent/create', [ServiceTalentController::class, 'create'])->name('owner.service.talent.create');
@@ -89,21 +89,21 @@ Route::prefix('owner')->group(function () {
     Route::put('/service-talent/{id}/edit', [ServiceTalentController::class, 'update'])->name('owner.service.talent.update');
     Route::get('/service-talent/{id}/destroy', [ServiceTalentController::class, 'destroy'])->name('owner.service.talent.destroy');
     // client
-    Route::get('/client', [ClientController::class, 'index'])->name('client.index');
-    Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
-    Route::post('/client/create', [ClientController::class, 'store'])->name('client.store');
-    Route::get('/client/{id}/detail', [ClientController::class, 'show'])->name('client.detail');
-    Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('client.edit');
-    Route::put('/client/{id}/edit', [ClientController::class, 'update'])->name('client.update');
-    Route::get('/client/{id}/destroy', [ClientController::class, 'destroy'])->name('client.destroy');
+    Route::get('/client', [ClientController::class, 'index'])->name('owner.client.index');
+    Route::get('/client/create', [ClientController::class, 'create'])->name('owner.client.create');
+    Route::post('/client/create', [ClientController::class, 'store'])->name('owner.client.store');
+    Route::get('/client/{id}/detail', [ClientController::class, 'show'])->name('owner.client.detail');
+    Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('owner.client.edit');
+    Route::put('/client/{id}/edit', [ClientController::class, 'update'])->name('owner.client.update');
+    Route::get('/client/{id}/destroy', [ClientController::class, 'destroy'])->name('owner.client.destroy');
     // user
-    Route::get('/user', [UserController::class, 'index'])->name('user.index');
-    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
-    Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
-    Route::get('/user/{id}/detail', [UserController::class, 'show'])->name('user.detail');
-    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-    Route::put('/user/{id}/edit', [UserController::class, 'update'])->name('user.update');
-    Route::get('/user/{id}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get('/user', [UserController::class, 'index'])->name('owner.user.index');
+    Route::get('/user/create', [UserController::class, 'create'])->name('owner.user.create');
+    Route::post('/user/create', [UserController::class, 'store'])->name('owner.user.store');
+    Route::get('/user/{id}/detail', [UserController::class, 'show'])->name('owner.user.detail');
+    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('owner.user.edit');
+    Route::put('/user/{id}/edit', [UserController::class, 'update'])->name('owner.user.update');
+    Route::get('/user/{id}/destroy', [UserController::class, 'destroy'])->name('owner.user.destroy');
 
 })->middleware(['auth', 'verified','role:owner']);
 
@@ -111,12 +111,12 @@ Route::prefix('owner')->group(function () {
 Route::prefix('admin')->group(function () {
     // talent
     Route::get('/talent', [TalentController::class, 'index'])->name('admin.talent.index');
-    Route::get('/talent/create', [TalentController::class, 'create'])->name('talent.create');
-    Route::post('/talent/create', [TalentController::class, 'store'])->name('talent.store');
-    Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('talent.detail');
-    Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('talent.edit');
-    Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('talent.update');
-    Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('talent.destroy');
+    Route::get('/talent/create', [TalentController::class, 'create'])->name('admin.talent.create');
+    Route::post('/talent/create', [TalentController::class, 'store'])->name('admin.talent.store');
+    Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('admin.talent.detail');
+    Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('admin.talent.edit');
+    Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('admin.talent.update');
+    Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('admin.talent.destroy');
 
 })->middleware(['auth', 'verified','role:admin']);
 

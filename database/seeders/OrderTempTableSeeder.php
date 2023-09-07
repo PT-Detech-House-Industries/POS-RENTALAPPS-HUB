@@ -27,16 +27,16 @@ class OrderTempTableSeeder extends Seeder
                 'end_service' => '2023-09-10 12:00:00',
                 'subtotal_service' => 200,
             ],
-            [
-                'client_id' => 2,
-                'servicetalent_id' => 2,
-                'talent_id' => 2,
-                'price_service' => 150,
-                'qty_service' => 3,
-                'start_service' => '2023-09-11 10:00:00',
-                'end_service' => '2023-09-11 13:00:00',
-                'subtotal_service' => 450,
-            ],
+            // [
+            //     'client_id' => 2,
+            //     'servicetalent_id' => 2,
+            //     'talent_id' => 2,
+            //     'price_service' => 150,
+            //     'qty_service' => 3,
+            //     'start_service' => '2023-09-11 10:00:00',
+            //     'end_service' => '2023-09-11 13:00:00',
+            //     'subtotal_service' => 450,
+            // ],
             // Tambahkan data order lainnya sesuai kebutuhan
         ];
 

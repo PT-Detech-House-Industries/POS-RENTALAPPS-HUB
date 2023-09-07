@@ -1,5 +1,5 @@
 <h3><a href="/">back</a></h3>
-<a href="{{ route('talent.create') }}">tambah data</a>
+<a href="{{ route('owner.talent.create') }}">tambah data</a>
 <table>
   <thead>
     <tr>

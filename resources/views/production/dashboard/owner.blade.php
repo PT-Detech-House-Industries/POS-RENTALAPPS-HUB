@@ -1,13 +1,13 @@
 <h4>Fitur</h4>
-<a href="{{ route('user.index') }}">Users All</a>
+<a href="{{ route('owner.user.index') }}">Users All</a>
 <br>
-<a href="{{ route('client.index') }}">Client</a>
+<a href="{{ route('owner.client.index') }}">Client</a>
 <br>
-<a href="{{ route('talent.index') }}">Talent</a>
+<a href="{{ route('owner.talent.index') }}">Talent</a>
 <br>
-<a href="{{ route('service.talent.index') }}">Service Talent</a>
+<a href="{{ route('owner.service.talent.index') }}">Service Talent</a>
 <br>
-<a href="{{ route('order.service.index') }}">Order Service</a>
+<a href="{{ route('owner.order.service.index') }}">Order Service</a>
 <br>
 <a href="{{ route('order.temp.index') }}">Order Temp Service</a>
 <br>

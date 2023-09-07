@@ -35,15 +35,15 @@ class TalentTableSeeder extends Seeder
             'profile_picture' => 'edward_profile.jpg',
         ]);
 
-        Talent::create([
-            'user_id' => 5,
-            'gender' => 'Female',
-            'fullname' => 'lili',
-            'nick_name' => 'lili.female',
-            'birthday' => '1998-05-15',
-            'phone' => '1234567890',
-            'profile_picture' => 'edward_profile.jpg',
-        ]);
+        // Talent::create([
+        //     'user_id' => 5,
+        //     'gender' => 'Female',
+        //     'fullname' => 'lili',
+        //     'nick_name' => 'lili.female',
+        //     'birthday' => '1998-05-15',
+        //     'phone' => '1234567890',
+        //     'profile_picture' => 'edward_profile.jpg',
+        // ]);
     }
 
     // {

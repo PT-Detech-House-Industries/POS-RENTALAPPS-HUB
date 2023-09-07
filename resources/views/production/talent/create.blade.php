@@ -8,7 +8,7 @@
     </div>
 @endif
 
-<form class="form-horizontal" role="form" action="{{ route('talent.store') }}" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" action="{{ route('owner.talent.store') }}" method="post" enctype="multipart/form-data">
   @csrf
   @method('POST')	
   <input name="role" type="hidden" value="client"/>

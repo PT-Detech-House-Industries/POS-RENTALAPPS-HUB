@@ -1,7 +1,6 @@
 <h3>coming soon, talent page</h3>
 <br>
-<a href="{{ route('talent.index') }}">Talent</a>
-<br>
+
 <form method="POST" action="{{ route('logout') }}">
   @csrf
   <a href="{{ route('logout') }}" onclick="event.preventDefault();

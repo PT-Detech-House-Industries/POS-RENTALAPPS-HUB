@@ -110,13 +110,16 @@ class TalentController extends Controller
                 ->withInput();
         }
 
-        User::create([
+        $talent = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'role' => 'talent',
             'password' => Hash::make($request->password),
             'backup_password' => Crypt::encrypt($request->password),
         ]);
+
+        // membuat akses untuk akun.
+        $talent->assignRole('talent');
 
         $scanUser = User::orderBy('created_at', 'desc')->first();
         // return dd($scanUser->id);
@@ -125,7 +128,7 @@ class TalentController extends Controller
             'user_id' => $scanUser->id,
         ]);
 
-        return Redirect::route('talent.index');
+        return Redirect::route('owner.talent.index');
         // return "bercanda";
     }
 
