@@ -13,5 +13,5 @@
 @if (Auth::user()->hasRole('client') )
   @include('production.dashboard.client')
 @endif
-<h1>dash</h1>
+
 <!-- pusat file di production.dashboard.[role] -->

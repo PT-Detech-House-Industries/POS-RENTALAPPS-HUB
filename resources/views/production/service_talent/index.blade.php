@@ -1,5 +1,5 @@
 <h3><a href="/">back</a></h3>
-<a href="{{ route('service.talent.create') }}">tambah data</a>
+<a href="{{ route('owner.service.talent.create') }}">tambah data</a>
 <table>
   <thead>
     <tr>
@@ -20,9 +20,9 @@
     <td>{{ $d->service_name }}</td>
     <td>{{ $d->duration }}</td>
     <td>{{ $d->price_service }}</td>
-    <td><a href="{{ route('service.talent.detail',[$d->id]) }}">Details</a></td>
-    <td><a href="{{ route('service.talent.edit',[$d->id]) }}">Edit</a></td>
-    <td><a href="{{ route('service.talent.destroy',[$d->id]) }}">Hapus</a></td>
+    <td><a href="{{ route('owner.service.talent.detail',[$d->id]) }}">Details</a></td>
+    <td><a href="{{ route('owner.service.talent.edit',[$d->id]) }}">Edit</a></td>
+    <td><a href="{{ route('owner.service.talent.destroy',[$d->id]) }}">Hapus</a></td>
   </tr>
   @endforeach
 </table>

@@ -62,7 +62,7 @@ class ServiceTalentController extends Controller
     public function create()
     {
         //
-        return view('production.talent.create');
+        return view('production.service_talent.create');
     }
 
     /**
@@ -75,34 +75,35 @@ class ServiceTalentController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'role' => 'required|string',
-            'password' => 'required|string|min:8',
+            // 'service_code' => 'required',
+            'jenis' => 'required',
+            // 'service_kind' => 'required',
+            'nama' => 'required',
+            'durasi' => 'required',
+            'harga' => 'required|numeric',
+            // 'description' => 'required',
+            // 'point' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('client.create') // Ganti dengan rute yang sesuai
+            return redirect()->route('owner.service.talent.create') // Ganti dengan rute yang sesuai
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => 'talent',
-            'password' => Hash::make($request->password),
-            'backup_password' => Crypt::encrypt($request->password),
+        // Jika validasi berhasil, simpan data ke dalam tabel ServiceTalent
+        ServiceTalent::create([
+            // 'service_code' => $request->service_code,
+            'service_sort' => $request->jenis,
+            // 'service_kind' => $request->service_kind,
+            'service_name' => $request->nama,
+            'duration' => $request->durasi,
+            'price_service' => $request->harga,
+            // 'description' => $request->description,
+            // 'point' => $request->point,
         ]);
 
-        $scanUser = User::orderBy('created_at', 'desc')->first();
-        // return dd($scanUser->id);
-
-        Talent::create([
-            'user_id' => $scanUser->id,
-        ]);
-
-        return Redirect::route('talent.index');
+        return Redirect::route('owner.service.talent.index');
         // return "bercanda";
     }
 

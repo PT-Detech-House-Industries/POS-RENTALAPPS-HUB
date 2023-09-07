@@ -81,13 +81,13 @@ Route::prefix('owner')->group(function () {
     Route::put('/order-service/{id}/edit', [OrderServiceController::class, 'update'])->name('order.service.update');
     Route::get('/order-service/{id}/destroy', [OrderServiceController::class, 'destroy'])->name('order.service.destroy');
     // service-talent
-    Route::get('/service-talent', [ServiceTalentController::class, 'index'])->name('service.talent.index');
-    Route::get('/service-talent/create', [ServiceTalentController::class, 'create'])->name('service.talent.create');
-    Route::post('/service-talent/create', [ServiceTalentController::class, 'store'])->name('service.talent.store');
-    Route::get('/service-talent/{id}/detail', [ServiceTalentController::class, 'show'])->name('service.talent.detail');
-    Route::get('/service-talent/{id}/edit', [ServiceTalentController::class, 'edit'])->name('service.talent.edit');
-    Route::put('/service-talent/{id}/edit', [ServiceTalentController::class, 'update'])->name('service.talent.update');
-    Route::get('/service-talent/{id}/destroy', [ServiceTalentController::class, 'destroy'])->name('service.talent.destroy');
+    Route::get('/service-talent', [ServiceTalentController::class, 'index'])->name('owner.service.talent.index');
+    Route::get('/service-talent/create', [ServiceTalentController::class, 'create'])->name('owner.service.talent.create');
+    Route::post('/service-talent/create', [ServiceTalentController::class, 'store'])->name('owner.service.talent.store');
+    Route::get('/service-talent/{id}/detail', [ServiceTalentController::class, 'show'])->name('owner.service.talent.detail');
+    Route::get('/service-talent/{id}/edit', [ServiceTalentController::class, 'edit'])->name('owner.service.talent.edit');
+    Route::put('/service-talent/{id}/edit', [ServiceTalentController::class, 'update'])->name('owner.service.talent.update');
+    Route::get('/service-talent/{id}/destroy', [ServiceTalentController::class, 'destroy'])->name('owner.service.talent.destroy');
     // client
     Route::get('/client', [ClientController::class, 'index'])->name('client.index');
     Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
