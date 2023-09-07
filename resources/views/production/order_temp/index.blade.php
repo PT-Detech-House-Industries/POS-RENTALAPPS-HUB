@@ -1,5 +1,6 @@
 <h3><a href="/">back</a></h3>
-<a href="{{ route('order.service.create') }}">tambah data</a>
+<a href="{{ route('order.temp.create') }}">tambah data</a> | 
+<a href="{{ route('order.temp.process') }}">process data</a>
 <table>
   <thead>
     <tr>

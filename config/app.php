@@ -195,6 +195,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Spatie\Permission\PermissionServiceProvider::class,
+
     ],
 
     /*
@@ -210,6 +212,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Permission' => Spatie\Permission\Facades\Permission::class,
     ])->toArray(),
 
 ];

@@ -20,10 +20,16 @@ use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-
+// middleware
+use App\Http\Middleware\CheckRole;
+use Auth;
 
 class TalentController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware(CheckRole::class . ':admin')->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -32,22 +38,38 @@ class TalentController extends Controller
     public function index()
     {
         try {
-            // membuat owner yang bisa memiliki akses untuk membuat user akun.
-            $data = Talent::all();
-            // $data = User::where('role', '!=', 'owner')->get();
 
-            foreach ($data as $d) {
-                $birthDate = Carbon::parse($d->birthday);
-                $currentDate = Carbon::now();
-                $d->age = $currentDate->diffInYears($birthDate);
+            if (Auth::user()->hasRole('owner')) {
+                // membuat owner yang bisa memiliki akses untuk membuat user akun.
+                $data = Talent::all();
+                // $data = User::where('role', '!=', 'owner')->get();
+
+                foreach ($data as $d) {
+                    $birthDate = Carbon::parse($d->birthday);
+                    $currentDate = Carbon::now();
+                    $d->age = $currentDate->diffInYears($birthDate);
+                }
+
+                // return dd($data);
+
+                return view('production.talent.index',
+                compact(
+                    'data',
+                ));
+                // return 'owner';
+                
+            } elseif (Auth::user()->hasRole('admin')) {
+                
+                return 'admin';
+
+            } elseif (Auth::user()->hasRole('client')) {
+
+                return 'client';
+                
+            } else {
+                return 'sorry tidak tersedia';
             }
 
-            // return dd($data);
-
-            return view('production.talent.index',
-            compact(
-                'data',
-            ));    
         } catch (\Exception $e) {
 
             return dd($e->getMessage());

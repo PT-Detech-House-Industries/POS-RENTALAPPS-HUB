@@ -18,21 +18,25 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         //
-        User::create([
+        $owner = User::create([
             'name' => 'owner',
             'email' => 'owner@nihonuwu.com',
             'password' => \Hash::make('12345678'),
             'backup_password' => Crypt::encrypt('12345678'),
             'role' => 'owner',
         ]);
+        
+        $owner->assignRole('owner');
 
-        User::create([
+        $admin = User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => \Hash::make('12345678'),
             'backup_password' => Crypt::encrypt('12345678'),
             'role' => 'admin',
         ]);
+
+        $admin->assignRole('admin');
         
         // User::create([
         //     'name' => 'Nur Fitria Andani',
@@ -234,7 +238,7 @@ class UsersTableSeeder extends Seeder
         //     'role' => 'client',
         // ]);
 
-        User::create([
+        $talent = User::create([
             'name' => 'joy',
             'email' => 'joy@gmail.com',
             'password' => \Hash::make('12345678'),
@@ -242,7 +246,9 @@ class UsersTableSeeder extends Seeder
             'role' => 'talent',
         ]);
 
-        User::create([
+        $talent->assignRole('talent');
+
+        $client = User::create([
             'name' => 'edward',
             'email' => 'edward@gmail.com',
             'password' => \Hash::make('12345678'),
@@ -250,21 +256,23 @@ class UsersTableSeeder extends Seeder
             'role' => 'client',
         ]);
 
-        User::create([
-            'name' => 'lili',
-            'email' => 'lili@gmail.com',
-            'password' => \Hash::make('12345678'),
-            'backup_password' => Crypt::encrypt('12345678'),
-            'role' => 'talent',
-        ]);
+        $client->assignRole('client');
 
-        User::create([
-            'name' => 'budi',
-            'email' => 'budi@gmail.com',
-            'password' => \Hash::make('12345678'),
-            'backup_password' => Crypt::encrypt('12345678'),
-            'role' => 'client',
-        ]);
+        // User::create([
+        //     'name' => 'lili',
+        //     'email' => 'lili@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'talent',
+        // ]);
+
+        // User::create([
+        //     'name' => 'budi',
+        //     'email' => 'budi@gmail.com',
+        //     'password' => \Hash::make('12345678'),
+        //     'backup_password' => Crypt::encrypt('12345678'),
+        //     'role' => 'client',
+        // ]);
 
         // User::create([
         //     'name' => 'nana',

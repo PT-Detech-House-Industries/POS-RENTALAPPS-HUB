@@ -36,4 +36,18 @@ class OrderServiceController extends Controller
         ));
         // return "berhasil";
     }
+
+    public function create()
+    {
+        $client = Client::all();
+        $talent = Talent::all();
+        $service = ServiceTalent::all();
+
+        return view('production.order_service.create', 
+        compact(
+            'client',
+            'talent',
+            'service',
+        ));
+    }
 }
