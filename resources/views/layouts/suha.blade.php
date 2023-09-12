@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="{{ asset('style.css')}}">
     <!-- Web App Manifest-->
     <link rel="manifest" href="{{ asset('manifest.json')}}">
-    @vite([])
   </head>
   <body>
     <!-- Preloader-->

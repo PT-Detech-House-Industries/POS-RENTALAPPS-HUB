@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\TalentController;
+use App\Http\Controllers\API\ProfileAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ use App\Http\Controllers\API\TalentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//profile
+Route::get('/profile-account', [ProfileAccountController::class, 'index']);
+Route::put('/profile-account/{id}/update', [ProfileAccountController::class, 'update']);
 // talent
 Route::get('/talent', [TalentController::class, 'index']);
 Route::post('/talent/store', [TalentController::class, 'store']);

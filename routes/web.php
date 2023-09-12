@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileAccountController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\OrderTempController;
@@ -121,17 +122,19 @@ Route::prefix('admin')->group(function () {
 })->middleware(['auth', 'verified','role:admin']);
 
 // role untuk talent
-// Route::prefix('talent')->group(function () {
-//     // talent
-//     Route::get('/talent', [TalentController::class, 'index'])->name('talent.index');
-//     Route::get('/talent/create', [TalentController::class, 'create'])->name('talent.create');
-//     Route::post('/talent/create', [TalentController::class, 'store'])->name('talent.store');
-//     Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('talent.detail');
-//     Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('talent.edit');
-//     Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('talent.update');
-//     Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('talent.destroy');
+Route::prefix('talent')->group(function () {
+    //profile
+    Route::get('/profile', [ProfileAccountController::class, 'index'])->name('talent.profile.index');
+    // order-service
+    Route::get('/order-service', [OrderServiceController::class, 'index'])->name('talent.order.service.index');
+    Route::get('/order-service/create', [OrderServiceController::class, 'create'])->name('talent.order.service.create');
+    Route::post('/order-service/create', [OrderServiceController::class, 'store'])->name('talent.order.service.store');
+    Route::get('/order-service/{id}/detail', [OrderServiceController::class, 'show'])->name('talent.order.service.detail');
+    Route::get('/order-service/{id}/edit', [OrderServiceController::class, 'edit'])->name('talent.order.service.edit');
+    Route::put('/order-service/{id}/edit', [OrderServiceController::class, 'update'])->name('talent.order.service.update');
+    Route::get('/order-service/{id}/destroy', [OrderServiceController::class, 'destroy'])->name('talent.order.service.destroy');
 
-// })->middleware(['auth', 'verified','role:talent']);
+})->middleware(['auth', 'verified','role:talent']);
 
 // // role untuk client
 // Route::prefix('client')->group(function () {

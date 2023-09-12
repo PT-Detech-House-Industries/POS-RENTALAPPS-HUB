@@ -64,7 +64,8 @@
                     Service
                 </a>
             </li> -->
-            <li>
+
+            <!-- <li>
                 <a href="/talent/under-maintance">
                     <i class="lni lni-bar-chart"></i>
                     Performa 
@@ -81,9 +82,10 @@
                     <i class="lni lni-wallet"></i>
                     Dompet
                 </a>
-            </li>
+            </li> -->
+            
             <li>
-                <a href="/talent/akun">
+                <a href="{{ route('talent.profile.index') }}">
                     <i class="lni lni-user"></i>
                     Profil
                 </a>
