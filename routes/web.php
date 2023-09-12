@@ -125,6 +125,8 @@ Route::prefix('admin')->group(function () {
 Route::prefix('talent')->group(function () {
     //profile
     Route::get('/profile', [ProfileAccountController::class, 'index'])->name('talent.profile.index');
+    Route::get('/profile/{id}/edit', [ProfileAccountController::class, 'edit'])->name('talent.profile.edit');
+    Route::put('/profile/{id}/edit', [ProfileAccountController::class, 'update'])->name('talent.profile.update');
     // order-service
     Route::get('/order-service', [OrderServiceController::class, 'index'])->name('talent.order.service.index');
     Route::get('/order-service/create', [OrderServiceController::class, 'create'])->name('talent.order.service.create');
@@ -137,17 +139,17 @@ Route::prefix('talent')->group(function () {
 })->middleware(['auth', 'verified','role:talent']);
 
 // // role untuk client
-// Route::prefix('client')->group(function () {
-//     // talent
-//     Route::get('/talent', [TalentController::class, 'index'])->name('talent.index');
-//     Route::get('/talent/create', [TalentController::class, 'create'])->name('talent.create');
-//     Route::post('/talent/create', [TalentController::class, 'store'])->name('talent.store');
-//     Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('talent.detail');
-//     Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('talent.edit');
-//     Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('talent.update');
-//     Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('talent.destroy');
+Route::prefix('client')->group(function () {
+    // talent
+    Route::get('/talent', [TalentController::class, 'index'])->name('talent.index');
+    Route::get('/talent/create', [TalentController::class, 'create'])->name('talent.create');
+    Route::post('/talent/create', [TalentController::class, 'store'])->name('talent.store');
+    Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('talent.detail');
+    Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('talent.edit');
+    Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('talent.update');
+    Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('talent.destroy');
 
-// })->middleware(['auth', 'verified','role:client']);
+})->middleware(['auth', 'verified','role:client']);
 
 
 // Route::middleware('auth')->group(function () {
