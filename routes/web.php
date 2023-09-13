@@ -140,6 +140,10 @@ Route::prefix('talent')->group(function () {
 
 // // role untuk client
 Route::prefix('client')->group(function () {
+    //profile
+    Route::get('/profile', [ProfileAccountController::class, 'index'])->name('client.profile.index');
+    Route::get('/profile/{id}/edit', [ProfileAccountController::class, 'edit'])->name('client.profile.edit');
+    Route::put('/profile/{id}/edit', [ProfileAccountController::class, 'update'])->name('client.profile.update');
     // talent
     Route::get('/talent', [TalentController::class, 'index'])->name('talent.index');
     Route::get('/talent/create', [TalentController::class, 'create'])->name('talent.create');

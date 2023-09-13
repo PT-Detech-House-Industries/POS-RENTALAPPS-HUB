@@ -58,7 +58,7 @@
                     Home
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="/pemesanan/talent-domisili">
                     <i class="lni lni-users"></i>
                     Talent
@@ -69,21 +69,21 @@
                     <i class="lni lni-heart"></i>
                     Dating
                 </a>
-            </li>
+            </li> -->
             <!-- <li>
                 <a href="#">
                     <i class="lni lni-book"></i>
                     Katalog Talent
                 </a>
             </li> -->
-            <li>
+            <!-- <li>
                 <a href="/pemesanan/talent-riwayat">
                     <i class="lni lni-book"></i>
                     Pemesanan
                 </a>
-            </li>
+            </li> -->
             <li>
-                <a href="/pengaturan/profile">
+                <a href="{{ route('client.profile.index') }}">
                     <i class="lni lni-user"></i>
                     Profil
                 </a>

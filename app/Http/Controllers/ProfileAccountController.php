@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Talent;
+use App\Models\Client;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -26,12 +28,7 @@ class ProfileAccountController extends Controller
     //
     public function index()
     {
-        $data = Talent::all();
-        // return dd($data);
-        return view('production.profile_account.index',
-            compact(
-                'data',
-        ));
+        return view('production.profile_account.index');
     }
 
     //
@@ -48,12 +45,74 @@ class ProfileAccountController extends Controller
     //
     public function update(Request $request,$id)
     {
+        
+        if (Auth::user()->hasRole('talent')) 
+        {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+                'fullname' => 'required|string|max:255',
+                'phone' => 'required|string|max:15',
+            ]); // Membuat aturan validasi kustom
 
-        // $user = User::findOrFail($id);
-        User::where('id',$id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
+            if ($validator->fails()) {
+                return redirect()->route('talent.profile.edit', $id)
+                    ->withErrors($validator)
+                    ->withInput();
+            } // Memeriksa apakah validasi berhasil
+
+            $user = User::findOrFail($id); // untuk mencari data
+            $userId = $user->id; // untuk mengambil id di user
+            
+            User::where('id',$id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]); // proses update
+
+            Client::where('user_id',$userId)->update([
+                'fullname' => $request->fullname,
+                'phone' => $request->phone,
+            ]); // proses update
+            
+            // Setelah berhasil mengupdate, tampilkan Sweet Alert
+            Alert::success('Success', 'Data Anda berhasil diperbarui.')->autoclose(3000);
+
+            return Redirect::route('talent.profile.index');
+        } // berhasil
+
+        if (Auth::user()->hasRole('client'))
+        {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+                'fullname' => 'required|string|max:255',
+                'phone' => 'required|string|max:15',
+            ]); // Membuat aturan validasi kustom
+
+            if ($validator->fails()) {
+                return redirect()->route('client.profile.edit', $id)
+                    ->withErrors($validator)
+                    ->withInput();
+            } // Memeriksa apakah validasi berhasil
+
+            $user = User::findOrFail($id); // untuk mencari data
+            $userId = $user->id; // untuk mengambil id di user
+            
+            User::where('id',$id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]); // proses update
+
+            Client::where('user_id',$userId)->update([
+                'fullname' => $request->fullname,
+                'phone' => $request->phone,
+            ]); // proses update
+            
+            // Setelah berhasil mengupdate, tampilkan Sweet Alert
+            Alert::success('Success', 'Data Anda berhasil diperbarui.')->autoclose(3000);
+
+            return Redirect::route('client.profile.index');
+        } // berhasil
 
         // $client->update([
         //     'gender' => $request->input('gender'),
@@ -70,7 +129,6 @@ class ProfileAccountController extends Controller
         //     'password' => Hash::make($request->password),
         //     'backup_password' => Crypt::encrypt($request->password),
         // ]);
-
-        return Redirect::route('talent.profile.index');
+        
     }
 }
