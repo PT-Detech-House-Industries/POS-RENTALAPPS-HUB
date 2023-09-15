@@ -31,5 +31,9 @@ class RolesTableSeeder extends Seeder
         Role::create([
             'name' => 'client'
         ]);
+        // add role
+        Role::create([
+            'name' => 'match_making'
+        ]);
     }
 }

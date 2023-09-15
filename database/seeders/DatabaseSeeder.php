@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             // CategoryProductTableSeeder::class,
             // KategoriTalentTableSeeder::class,
             
+            AppVersionSeeder::class,
             RolesTableSeeder::class,
             UsersTableSeeder::class,
             TalentTableSeeder::class,

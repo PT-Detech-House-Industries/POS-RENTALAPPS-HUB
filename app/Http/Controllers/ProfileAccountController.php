@@ -56,6 +56,7 @@ class ProfileAccountController extends Controller
             ]); // Membuat aturan validasi kustom
 
             if ($validator->fails()) {
+                Alert::error('Error', 'Data Anda memiliki kesalahan.');
                 return redirect()->route('talent.profile.edit', $id)
                     ->withErrors($validator)
                     ->withInput();
@@ -90,6 +91,7 @@ class ProfileAccountController extends Controller
             ]); // Membuat aturan validasi kustom
 
             if ($validator->fails()) {
+                Alert::error('Error', 'Data Anda memiliki kesalahan.');
                 return redirect()->route('client.profile.edit', $id)
                     ->withErrors($validator)
                     ->withInput();

@@ -15,6 +15,18 @@ class TalentTableSeeder extends Seeder
      */
     public function run()
     {
+        for ($i = 0; $i < 10; $i++) {
+            Talent::create([
+                'user_id' => 3,
+                'gender' => 'Female',
+                'fullname' => 'Taira',
+                'nick_name' => 'tiara.female',
+                'birthday' => '1998-05-15',
+                'phone' => '1234567890',
+                'profile_picture' => 'edward_profile.jpg',
+            ]);
+        }
+
         //
         // Talent::create([
         //     'user_id' => 2,
@@ -25,15 +37,15 @@ class TalentTableSeeder extends Seeder
         //     'slug' => 'joy', // unutk link 
         // ]);
 
-        Talent::create([
-            'user_id' => 3,
-            'gender' => 'Female',
-            'fullname' => 'Taira',
-            'nick_name' => 'tiara.female',
-            'birthday' => '1998-05-15',
-            'phone' => '1234567890',
-            'profile_picture' => 'edward_profile.jpg',
-        ]);
+        // Talent::create([
+        //     'user_id' => 3,
+        //     'gender' => 'Female',
+        //     'fullname' => 'Taira',
+        //     'nick_name' => 'tiara.female',
+        //     'birthday' => '1998-05-15',
+        //     'phone' => '1234567890',
+        //     'profile_picture' => 'edward_profile.jpg',
+        // ]);
 
         // Talent::create([
         //     'user_id' => 5,

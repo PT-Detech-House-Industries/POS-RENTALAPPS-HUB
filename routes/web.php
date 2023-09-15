@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileAccountController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\OrderDetailController;
@@ -42,9 +43,7 @@ Route::get('/auth/facebook/callback', [AuthController::class, 'handleFacebookCal
 // });
 
 // starter page
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // route untuk owner
 Route::prefix('owner')->group(function () {
