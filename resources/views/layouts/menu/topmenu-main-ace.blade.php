@@ -7,21 +7,24 @@
 
   <div class="sidebar-shortcuts" id="sidebar-shortcuts">
     <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-      <button class="btn btn-info">
-        <i class="ace-icon fa fa-signal"></i>
-      </button>
-
-      <button class="btn btn-info">
-        <i class="ace-icon fa fa-pencil"></i>
-      </button>
-
-      <button class="btn btn-info">
+      <a href="#" class="btn btn-info">
         <i class="ace-icon fa fa-users"></i>
-      </button>
+      </a>
 
-      <button class="btn btn-info">
+      <a href="#" class="btn btn-info">
+        <i class="ace-icon fa fa-signal"></i>
+      </a>
+
+      <a href="#" class="btn btn-info">
         <i class="ace-icon fa fa-cogs"></i>
-      </button>
+      </a>
+
+      <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-info">
+        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+          @csrf
+        </form>
+        <i class="ace-icon fa fa-sign-out"></i>
+      </a>
     </div>
 
     <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
@@ -45,249 +48,10 @@
       <b class="arrow"></b>
     </li>
 
-    <!-- master -->
-    <li class="hover">
-      <a href="#" class="dropdown-toggle">
-        <i class="menu-icon fa fa-list-alt"></i>
-        <span class="menu-text"> Master</span>
-
-        <b class="arrow fa fa-angle-down"></b>
-      </a>
-
-      <b class="arrow"></b>
-
-      <ul class="submenu">
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Kategori
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Satuan
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Barang
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <!-- <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Gudang
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Customer
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Supplier
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Sales
-          </a>
-
-          <b class="arrow"></b>
-        </li> -->
-      </ul>
-    </li>
-
-    <!-- barang -->
-    <li class="hover">
-      <a href="#" class="dropdown-toggle">
-        <i class="menu-icon fa fa-list"></i>
-        <span class="menu-text"> Barang </span>
-
-        <b class="arrow fa fa-angle-down"></b>
-      </a>
-
-      <b class="arrow"></b>
-
-      <ul class="submenu">
-
-        <li class="hover">
-          <a href="#" class="dropdown-toggle">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Stok
-            <b class="arrow fa fa-angle-down"></b>
-          </a>
-
-          <b class="arrow"></b>
-
-          <ul class="submenu">
-            <li class="hover">
-              <a href="#">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Tabel Ringkasan Stok
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="hover">
-              <a href="#">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Riwayat Stok Masuk
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-
-            <li class="hover">
-              <a href="#">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Riwayat Stok Keluar
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-          </ul>
-        </li>
-
-        <li class="hover">
-          <a href="#" class="dropdown-toggle">
-            <i class="menu-icon fa fa-caret-right"></i>
-
-            Harga
-            <b class="arrow fa fa-angle-down"></b>
-          </a>
-
-          <b class="arrow"></b>
-
-          <ul class="submenu">
-            <li class="hover">
-              <a href="#">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Harga Modal
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="hover">
-              <a href="#">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Harga Lusin
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="hover">
-              <a href="#">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Harga Ecer
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <!-- <li class="hover">
-              <a href="#">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Harga Umum
-              </a>
-
-              <b class="arrow"></b>
-            </li> -->
-
-          </ul>
-        </li>
-
-      </ul>
-    </li>
-
-    <!-- transaksi -->
-    <li class="hover">
-      <a href="#" class="dropdown-toggle">
-        <i class="menu-icon fa fa-money"></i>
-        <span class="menu-text"> Transaksi </span>
-
-        <b class="arrow fa fa-angle-down"></b>
-      </a>
-
-      <b class="arrow"></b>
-
-      <ul class="submenu">
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Pembelian
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Penjualan
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Pembayaran
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="hover">
-          <a href="#">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Hutang & Piutang
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-      </ul>
-    </li>
-
     <li class="#">
-
-      <form id="logout-form" method="POST" action="{{ route('logout') }}">
-        @csrf
-      </form>
-
-      <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class="menu-icon fa fa-sign-out"></i>
-        <span class="menu-text"> Logout</span>
+      <a href="#">
+        <i class="menu-icon fa fa-arrow-left"></i>
+        <span class="menu-text"> Back</span>
       </a>
 
       <b class="arrow"></b>

@@ -22,6 +22,15 @@
 
 @section('main')
 <div class="row">
+	<!-- <ul class="pager">
+		<li class="previous">
+			<a href="#">&larr; Older</a>
+		</li>
+
+		<li class="next">
+			<a href="#">Newer &rarr;</a>
+		</li>
+	</ul> -->
 	<div class="col-xs-12">
 		<a href="{{ route('owner.user.index') }}" class="btn btn-app btn-success btn-sm">
 			<i class="ace-icon fa fa-users bigger-200"></i>

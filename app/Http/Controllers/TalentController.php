@@ -146,7 +146,7 @@ class TalentController extends Controller
         $currentDate = Carbon::now();
         $age = $currentDate->diffInYears($birthDate);
 
-        return view('production.client.show',
+        return view('production.talent.show',
         compact(
             'data',
             'backupPass',
@@ -272,16 +272,16 @@ class TalentController extends Controller
     public function destroy($id)
     {
         //
-        $client  = Talent::findOrFail($id);
+        $talent  = Talent::findOrFail($id);
         
         // Hapus data terkait dari tabel User jika ada
-        if ($client->user) {
-            $client->user->delete();
+        if ($talent->user) {
+            $talent->user->delete();
         }
 
         // Hapus data dari tabel Client
-        $client->delete();
+        $talent->delete();
 
-        return Redirect::route('talent.index');
+        return Redirect::route('owner.talent.index');
     }
 }

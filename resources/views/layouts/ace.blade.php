@@ -141,7 +141,7 @@
         <div class="footer-content">
           <span class="bigger-120">
             <span class="blue bolder">PT.</span>
-            Detech house &copy;{{ now()->year }}
+            Detech house &copy;2022-{{ now()->year }}
           </span>
         </div>
       </div>
