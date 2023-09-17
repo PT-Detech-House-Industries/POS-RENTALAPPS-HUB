@@ -19,16 +19,16 @@ class OrderServiceTableSeeder extends Seeder
         //
         OrderService::create([
             'invoice' => 'null',
-            'start_service' => '1694935315687',
-            'end_service' => '1694935315687',
+            'start_service' => '2022-01-01',
+            'end_service' => '2022-01-01',
             'total_payment' => 0,
             'status_order' => 'null',
         ]);
 
         OrderService::create([
             'invoice' => 'null',
-            'start_service' => '1694935315687',
-            'end_service' => '1694935315687',
+            'start_service' => '2022-01-01',
+            'end_service' => '2022-01-01',
             'total_payment' => 0,
             'status_order' => 'null',
         ]);

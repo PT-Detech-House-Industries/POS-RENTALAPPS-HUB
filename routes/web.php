@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WaktuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileAccountController;
 use App\Http\Controllers\RoleController;
@@ -28,6 +29,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 Route::get('/', function () {
     return redirect('/login');
 });
+
+Route::get('/waktu', [WaktuController::class, 'berhasil']);
 
 Route::get('/create-role', [RoleController::class, 'createRole']);
 

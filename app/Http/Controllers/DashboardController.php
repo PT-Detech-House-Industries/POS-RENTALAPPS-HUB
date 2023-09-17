@@ -34,8 +34,16 @@ class DashboardController extends Controller
             // $version = AppVersion::latest()->first();
             // $dataVersion = $version->version;
             // $dataYear = $version->created_at->format('Y');
-            
-            return view('dashboard');
+            $sumUser = User::count();
+            $sumTalent = Talent::count();
+            $sumClient = Client::count();
+
+            return view('dashboard',
+            compact(
+                'sumUser',
+                'sumTalent',
+                'sumClient',
+            ));
         }
 
         if (Auth::user()->hasRole('admin'))

@@ -85,8 +85,17 @@ class TalentController extends Controller
     public function create()
     {
         //
-        return view('production.talent.create');
-    }
+        try {
+
+            if (Auth::user()->hasRole('owner')) {
+                return view('production.talent.create');
+            }
+
+        } catch (\Exception $e) {
+            
+            return dd($e->getMessage());
+        }
+    } // berhasil
 
     /**
      * Store a newly created resource in storage.
@@ -96,40 +105,52 @@ class TalentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'role' => 'required|string',
-            'password' => 'required|string|min:8',
-        ]);
+        try {
 
-        if ($validator->fails()) {
-            return redirect()->route('client.create') // Ganti dengan rute yang sesuai
-                ->withErrors($validator)
-                ->withInput();
-        }
+            if (Auth::user()->hasRole('owner')) 
+            {
+                //
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|email|unique:users,email',
+                    'role' => 'required|string',
+                    'password' => 'required|string|min:8',
+                ]);
 
-        $talent = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => 'talent',
-            'password' => Hash::make($request->password),
-            'backup_password' => Crypt::encrypt($request->password),
-        ]);
+                if ($validator->fails()) {
+                    return redirect()->route('client.create') // Ganti dengan rute yang sesuai
+                        ->withErrors($validator)
+                        ->withInput();
+                }
 
-        // membuat akses untuk akun.
-        $talent->assignRole('talent');
+                $talent = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'role' => 'talent',
+                    'password' => Hash::make($request->password),
+                    'backup_password' => Crypt::encrypt($request->password),
+                ]);
 
-        $scanUser = User::orderBy('created_at', 'desc')->first();
-        // return dd($scanUser->id);
+                // membuat akses untuk akun.
+                $talent->assignRole('talent');
 
-        Talent::create([
-            'user_id' => $scanUser->id,
-        ]);
+                $scanUser = User::orderBy('created_at', 'desc')->first();
+                // return dd($scanUser->id);
 
-        return Redirect::route('owner.talent.index');
-        // return "bercanda";
+                Talent::create([
+                    'user_id' => $scanUser->id,
+                ]);
+
+                Alert::success('Success', 'Data Anda berhasil ditambah.')->autoclose(3000);
+
+                return Redirect::route('owner.talent.index');
+                // return "bercanda";
+            }
+
+        } catch (\Exception $e) {
+
+            return dd($e->getMessage());
+        } 
     }
 
     /**
@@ -140,18 +161,29 @@ class TalentController extends Controller
      */
     public function show($id)
     {
-        $data = Talent::findOrFail($id);
-        $backupPass = Crypt::decrypt($data->user->backup_password);
-        $birthDate = Carbon::parse($data->birthday);
-        $currentDate = Carbon::now();
-        $age = $currentDate->diffInYears($birthDate);
+        try {
 
-        return view('production.talent.show',
-        compact(
-            'data',
-            'backupPass',
-            'age',
-        ));
+            if (Auth::user()->hasRole('owner')) {
+                
+                $data = Talent::findOrFail($id);
+                $backupPass = Crypt::decrypt($data->user->backup_password);
+                $birthDate = Carbon::parse($data->birthday);
+                $currentDate = Carbon::now();
+                $age = $currentDate->diffInYears($birthDate);
+    
+                return view('production.talent.show',
+                compact(
+                    'data',
+                    'backupPass',
+                    'age',
+                ));
+            }
+
+        } catch (\Exception $e) {
+            
+            return dd($e->getMessage());
+        }
+        
     }
 
     /**
@@ -162,15 +194,25 @@ class TalentController extends Controller
      */
     public function edit($id)
     {
-        //
-        $data = Talent::findOrFail($id);
-        $backupPass = Crypt::decrypt($data->user->backup_password);
+        try {
 
-        return view('production.talent.edit',
-        compact(
-            'data',
-            'backupPass',
-        ));
+            if (Auth::user()->hasRole('owner')) { // jika ada owner
+                //
+                $data = Talent::findOrFail($id);
+                $backupPass = Crypt::decrypt($data->user->backup_password);
+    
+                return view('production.talent.edit',
+                compact(
+                    'data',
+                    'backupPass',
+                ));
+            }
+
+        } catch (\Exception $e) {
+            
+            return dd($e->getMessage());
+        }
+        
     }
 
     /**
@@ -182,85 +224,133 @@ class TalentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // Validasi data yang dikirimkan melalui formulir
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
-            'gender' => 'required|string',
-            'fullname' => 'required|string|max:255',
-            'nick_name' => 'required|string|max:255',
-            'birthday' => 'required|date',
-            'phone' => 'required|string|max:20',
-            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ubah sesuai kebutuhan Anda
-        ]);
+        try {
+            if (Auth::user()->hasRole('owner')) {
 
-        if ($validator->fails()) {
-            return redirect()->route('client.edit',[$id]) // Ganti dengan rute yang sesuai
-                ->withErrors($validator)
-                ->withInput();
-        }
+                // Validasi data yang dikirimkan melalui formulir
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|email',
+                    'password' => 'required|string|min:6',
+                    'gender' => 'required|string',
+                    'fullname' => 'required|string|max:255',
+                    'nick_name' => 'required|string|max:255',
+                    'birthday' => 'required|date',
+                    'phone' => 'required|string|max:20',
+                ]);
+    
+                // menyimpan data gambar di folder dan
+                // menamakan nama folder berdasarkan kategori
+                // kategori dari barang tersebut di simpan
+                // di $namafile
+    
+                //jika ada gambar
+                if($request->hasFile('profile_picture')
+                && $request->file('profile_picture')->isValid()) { // jika ada file
+                    
+                    $validator = Validator::make($request->all(), [
+                        'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ubah sesuai kebutuhan Anda
+                    ]);
+    
+                    if ($validator->fails()) {
+                        return redirect()->route('owner.talent.edit',[$id]) // Ganti dengan rute yang sesuai
+                            ->withErrors($validator)
+                            ->withInput();
+                    }
+    
+                    // START - proses untuk upload foto profile
+                
+                    $namafile = $request->input('nick_name');
+                    
+                    $gambar = $request->file('profile_picture');
+                    $namaGambar = time() . '-' . $gambar->getClientOriginalName();
+                    $path = 'foto-produk/' . $namafile . '/'; // Path penyimpanan
+                
+                    // $gambar->move($path, $namaGambar, 'public');
+                    // $this->createDirectoryIfNotExists(public_path($path));
+                    // Manipulasi gambar (resize dan simpan versi terkompresi)
+                    
+                    if (!File::exists($path)) {
+                        File::makeDirectory($path, $mode = 0777, true, true);
+                        // $mode = 0777 mengatur izin untuk direktori yang baru dibuat
+                    }
+                    $compressedImage = Image::make($gambar)
+                    ->resize(500, 500, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->encode('jpg', 75)
+                    ->save(public_path('foto-produk/'.$namafile.'/' . $namaGambar)); 
+                    
+                    // Cek apakah direktori sudah ada, jika belum, buat direktori baru
+                    // if (!Storage::exists($path)) {
+                    //     Storage::makeDirectory($path, 0777, true); // Buat direktori dengan izin 0777
+                    // }
+                    // $gambar->move($path,$namaGambar);
+                
+                    // Simpan gambar ke direktori yang baru dibuat
+                    // $gambar->move($path);
+    
+                    // END - proses untuk upload foto profile
+                
+                    
+                    // Update data pengguna berdasarkan ID
+                    $client = Talent::findOrFail($id);
+                    $client->update([
+                        'gender' => $request->input('gender'),
+                        'fullname' => $request->input('fullname'),
+                        'nick_name' => $request->input('nick_name'),
+                        'birthday' => $request->input('birthday'),
+                        'phone' => $request->input('phone'),
+                        'profile_picture' => $namaGambar,
+                    ]);
+    
+                    User::where('id',$client->user_id)->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                        'backup_password' => Crypt::encrypt($request->password),
+                    ]);
+                    
+                } else if (!$request->hasFile('profile_picture')) { // jika tidak ada foto
+                    
+                    if ($validator->fails()) {
+                        return redirect()->route('owner.talent.edit',[$id]) // Ganti dengan rute yang sesuai
+                            ->withErrors($validator)
+                            ->withInput();
+                    }
+    
+                    $client = Talent::findOrFail($id);
+                    $client->update([
+                        'gender' => $request->input('gender'),
+                        'fullname' => $request->input('fullname'),
+                        'nick_name' => $request->input('nick_name'),
+                        'birthday' => $request->input('birthday'),
+                        'phone' => $request->input('phone'),
+                    ]);
+    
+                    User::where('id',$client->user_id)->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                        'backup_password' => Crypt::encrypt($request->password),
+                    ]);
+                    
+                } else {
+                    return 'maaf';
+                }
+    
+                Alert::success('Success', 'Data Anda berhasil diperbarui.')->autoclose(3000);
+    
+                return Redirect::route('owner.talent.index');
+                // end-controller
+            } // berhasil
 
-        // menyimpan data gambar di folder dan
-        // menamakan nama folder berdasarkan kategori
-        // kategori dari barang tersebut di simpan
-        // di $namafile
-
-        if ($request->hasFile('profile_picture')) {
-            $namafile = $request->input('nick_name');
+        } catch (\Exception $e) {
             
-            $gambar = $request->file('profile_picture');
-            $namaGambar = time() . '-' . $gambar->getClientOriginalName();
-            $path = 'foto-produk/' . $namafile . '/'; // Path penyimpanan
-        
-            // $gambar->move($path, $namaGambar, 'public');
-            // $this->createDirectoryIfNotExists(public_path($path));
-            // Manipulasi gambar (resize dan simpan versi terkompresi)
-
-            if (!File::exists($path)) {
-                File::makeDirectory($path, $mode = 0777, true, true);
-                // $mode = 0777 mengatur izin untuk direktori yang baru dibuat
-            }
-
-            $compressedImage = Image::make($gambar)
-            ->resize(500, 500, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })
-            ->encode('jpg', 75)
-            ->save(public_path('foto-produk/'.$namafile.'/' . $namaGambar)); 
-
-            // Cek apakah direktori sudah ada, jika belum, buat direktori baru
-            // if (!Storage::exists($path)) {
-            //     Storage::makeDirectory($path, 0777, true); // Buat direktori dengan izin 0777
-            // }
-
-            // $gambar->move($path,$namaGambar);
-        
-            // Simpan gambar ke direktori yang baru dibuat
-            // $gambar->move($path);
+            return dd($e->getMessage());
         }
         
-        // Update data pengguna berdasarkan ID
-        $client = Talent::findOrFail($id);
-        $client->update([
-            'gender' => $request->input('gender'),
-            'fullname' => $request->input('fullname'),
-            'nick_name' => $request->input('nick_name'),
-            'birthday' => $request->input('birthday'),
-            'phone' => $request->input('phone'),
-            'profile_picture' => $namaGambar,
-        ]);
-
-        User::where('id',$client->user_id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'backup_password' => Crypt::encrypt($request->password),
-        ]);
-
-        return Redirect::route('talent.index');
     }
 
     /**
@@ -271,17 +361,28 @@ class TalentController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $talent  = Talent::findOrFail($id);
-        
-        // Hapus data terkait dari tabel User jika ada
-        if ($talent->user) {
-            $talent->user->delete();
+        try {
+            if (Auth::user()->hasRole('owner')) {
+                //
+                $talent  = Talent::findOrFail($id);
+                
+                // Hapus data terkait dari tabel USER jika ada
+                if ($talent->user) {
+                    $talent->user->delete();
+                }
+    
+                // Hapus data dari tabel TALENT
+                $talent->delete();
+
+                Alert::success('Success', 'Data Anda berhasil dihapus.')->autoclose(3000);
+    
+                return Redirect::route('owner.talent.index');
+                // end-controller
+            }    
+        } catch (\Exception $e) {
+            
+            return dd($e->getMessage());
         }
-
-        // Hapus data dari tabel Client
-        $talent->delete();
-
-        return Redirect::route('owner.talent.index');
+        
     }
 }

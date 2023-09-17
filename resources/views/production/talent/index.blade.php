@@ -26,7 +26,7 @@
 <div class="row">
   <div class="col-xs-12">
     <h3 class="row header smaller lighter purple">
-      <span class="col-sm-6"> Action </span><!-- /.col -->
+      <span class="col-sm-6"> TABEL </span><!-- /.col -->
 
       <span class="col-sm-6">
         <label class="pull-right inline">
@@ -51,7 +51,7 @@
           <th>Umur</th>
           <th>
             <i>@</i>
-            Detail
+            AKSI
           </th>
         </tr>
       </thead>
@@ -63,7 +63,9 @@
           <td>{{ $d->user->name }}</td>
           <td>{{ $d->age }} tahun</td>
           <td>
-            <a href="{{ route('owner.talent.detail',[$d->id]) }}">Link</a>
+            <a href="{{ route('owner.talent.detail',[$d->id]) }}">
+              KLIK
+            </a>
           </td>
         </tr>
         @endforeach

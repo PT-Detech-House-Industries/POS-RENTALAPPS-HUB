@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('order_service', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('invoice')->nullable();
+            // $table->date('start_service')->nullable();
+            // $table->date('end_service')->nullable();
             $table->bigInteger('start_service')->nullable();
             $table->bigInteger('end_service')->nullable();
             $table->integer('total_payment')->nullable()->unsigned();

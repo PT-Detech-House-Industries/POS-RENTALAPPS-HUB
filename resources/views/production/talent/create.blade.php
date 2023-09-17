@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h3 class="row header smaller lighter purple">
-                <span class="col-sm-6"> Action </span><!-- /.col -->
+                <span class="col-sm-6"> INSERT </span><!-- /.col -->
 
                 <span class="col-sm-6">
                     <label class="pull-right inline">

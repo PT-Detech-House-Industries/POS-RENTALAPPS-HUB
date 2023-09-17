@@ -26,13 +26,10 @@
     <div class="row">
         <div class="col-xs-12">
             <h3 class="row header smaller lighter purple">
-            <span class="col-sm-6"> Action </span><!-- /.col -->
+            <span class="col-sm-6"> EDIT </span><!-- /.col -->
 
             <span class="col-sm-6">
                 <label class="pull-right inline">
-                <a href="{{ route('owner.talent.create') }}" class="btn btn-success btn-minier">
-                    Tambah Data
-                </a>
                 <a href="{{ route('owner.talent.detail',[$data->id]) }}" class="btn btn-warning btn-minier">
                     Kembali
                 </a>
@@ -55,7 +52,7 @@
             </div>
         @endif
 
-        <form class="form-horizontal" role="form" action="{{ route('talent.update', [$data->id]) }}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" action="{{ route('owner.talent.update', [$data->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
