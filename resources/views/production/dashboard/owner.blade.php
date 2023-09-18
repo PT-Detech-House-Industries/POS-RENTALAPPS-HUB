@@ -110,15 +110,15 @@
 			<div class="col-xs-8 center">
 				<div class="well well-lg">
 					<h4 class="red">TOTAL USER</h4>
-					tanggal : {{now()}}
+					tanggal : {{$dataTime}}
 				</div>
 				<div class="well well-lg">
 					<h4 class="blue">TOTAL TALENT</h4>
-					tanggal : {{now()}}
+					tanggal : {{$dataTime}}
 				</div>
 				<div class="well well-lg">
 					<h4 class="blue">TOTAL CLIENT</h4>
-					tanggal : {{now()}}
+					tanggal : {{$dataTime}}
 				</div>
 			</div><!-- /.col -->
 		</div><!-- /.row -->

@@ -64,7 +64,7 @@
           <td>{{ $d->age }} tahun</td>
           <td>
             <a href="{{ route('owner.talent.detail',[$d->id]) }}">
-              KLIK
+              Klik
             </a>
           </td>
         </tr>

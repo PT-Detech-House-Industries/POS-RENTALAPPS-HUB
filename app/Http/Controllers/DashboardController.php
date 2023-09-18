@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Talent;
 use App\Models\Client;
 use App\Models\AppVersion;
+use App\Mail\NamaEmailAnda;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -38,11 +39,19 @@ class DashboardController extends Controller
             $sumTalent = Talent::count();
             $sumClient = Client::count();
 
+            // waktu
+            $milliseconds = Carbon::now()->timestamp * 1000;
+            // $milliseconds = 1694935315687;
+            $carbon = Carbon::createFromTimestamp($milliseconds / 1000, 'Asia/Jakarta'); // Bagi dengan 1000 karena timestamp dalam milidetik
+
+            $dataTime = $carbon->format('M-d-Y H:i:s');
+
             return view('dashboard',
             compact(
                 'sumUser',
                 'sumTalent',
                 'sumClient',
+                'dataTime',
             ));
         }
 

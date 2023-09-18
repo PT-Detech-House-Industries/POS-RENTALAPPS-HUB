@@ -4,19 +4,17 @@
 
 <head>
 
-    <title>ItsolutionStuff.com</title>
+  <title>ItsolutionStuff.com</title>
 
 </head>
 
 <body>
 
-    <h1>asdf</h1>
+  <h1>asdf</h1>
 
-    <p>asdf</p>
+  <p>asdf</p>
 
-  
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 
@@ -28,9 +26,7 @@
 
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-     
-
-    <p>Thank you</p>
+  <p>Thank you</p>
 
 </body>
 

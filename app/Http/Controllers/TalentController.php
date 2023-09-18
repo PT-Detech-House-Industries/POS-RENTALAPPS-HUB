@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Talent;
+use App\Mail\AdminTalentEmail;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -113,7 +115,6 @@ class TalentController extends Controller
                 $validator = Validator::make($request->all(), [
                     'name' => 'required|string|max:255',
                     'email' => 'required|email|unique:users,email',
-                    'role' => 'required|string',
                     'password' => 'required|string|min:8',
                 ]);
 
@@ -142,6 +143,9 @@ class TalentController extends Controller
                 ]);
 
                 Alert::success('Success', 'Data Anda berhasil ditambah.')->autoclose(3000);
+
+                $email = new AdminTalentEmail();
+                Mail::to('edwardthemangare@gmail.com')->send($email);
 
                 return Redirect::route('owner.talent.index');
                 // return "bercanda";

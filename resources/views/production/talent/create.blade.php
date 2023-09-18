@@ -55,8 +55,7 @@
   </div>
   @endif
 
-
-  <div class="col-xs-12 col-sm-4">
+  <div class="col-xs-12">
     <div class="widget-box">
       <div class="widget-header">
         <h4 class="widget-title">Form</h4>
