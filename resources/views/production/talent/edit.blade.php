@@ -1,103 +1,116 @@
 @if (Auth::user()->hasRole('owner') )
-    <!-- import-template -->
-    @extends('layouts.ace')
+<!-- import-template -->
+@extends('layouts.ace')
 
-    <!-- main -->
-    @push('header')
-    <!-- none -->
-    @endpush
+<!-- main -->
+@push('header')
+<!-- none -->
+@endpush
 
-    @section('page-header')
-        <!-- page-header -->
-        <div class="page-header">
-        <h1>
-            Talent
-            <small data-step="1" data-intro="Langkah 1: Halaman index form Produk Barang">
-            <i class="ace-icon fa fa-angle-double-right"></i>
-            <!-- top menu &amp; navigation -->
-            index page
-            </small>
-        </h1>
-        </div><!-- /.page-header -->
-    @endsection
+@section('page-header')
+<!-- page-header -->
+<div class="page-header">
+  <h1>
+    Talent
+    <small data-step="1" data-intro="Langkah 1: Halaman index form Produk Barang">
+      <i class="ace-icon fa fa-angle-double-right"></i>
+      <!-- top menu &amp; navigation -->
+      index page
+    </small>
+  </h1>
+</div><!-- /.page-header -->
+@endsection
 
-    @section('main')
-    <!-- PAGE CONTENT BEGINS -->
-    <div class="row">
-        <div class="col-xs-12">
-            <h3 class="row header smaller lighter purple">
-            <span class="col-sm-6"> EDIT </span><!-- /.col -->
+@section('main')
+<!-- PAGE CONTENT BEGINS -->
+<div class="row">
+  <div class="col-xs-12">
+    <h3 class="row header smaller lighter purple">
+      <span class="col-sm-6"> EDIT </span><!-- /.col -->
 
-            <span class="col-sm-6">
-                <label class="pull-right inline">
-                <a href="{{ route('owner.talent.detail',[$data->id]) }}" class="btn btn-warning btn-minier">
-                    Kembali
-                </a>
-                </label>
-            </span><!-- /.col -->
-            </h3><!-- /.row -->
+      <span class="col-sm-6">
+        <label class="pull-right inline">
+          <a href="{{ route('owner.talent.detail',[$data->id]) }}" class="btn btn-warning btn-minier">
+            Kembali
+          </a>
+        </label>
+      </span><!-- /.col -->
+    </h3><!-- /.row -->
 
-        </div>
+  </div>
+
+  <div class="space-4"></div>
+  <div class="space-4"></div>
+  <div class="space-4"></div>
+
+  @if ($errors->any())
+  <div class="col-xs-12">
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">
+        <i class="ace-icon fa fa-times"></i>
+      </button>
+      <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
     </div>
+  </div>
+  @endif
 
-    <!-- PAGE CONTENT ENDS -->
+  <div class="col-xs-12">
+    <form class="form-horizontal" role="form" action="{{ route('owner.talent.update', [$data->id]) }}" method="post"
+      enctype="multipart/form-data">
+      @csrf
+      @method('PUT')
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+      <label for="name">Name</label>
+      <input name="name" type="text" value="{{ $data->user->name }}" />
+      <br><br>
 
-        <form class="form-horizontal" role="form" action="{{ route('owner.talent.update', [$data->id]) }}" method="post" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+      <label for="email">Email</label>
+      <input name="email" type="email" value="{{ $data->user->email }}" />
+      <br><br>
 
-            <label for="name">Name</label>
-            <input name="name" type="text" value="{{ $data->user->name }}" />
-            <br><br>
+      <label for="password">Password</label>
+      <input name="password" type="text" value="{{ $backupPass }}" />
+      <br><br>
 
-            <label for="email">Email</label>
-            <input name="email" type="email" value="{{ $data->user->email }}" />
-            <br><br>
+      <label for="gender">Gender</label>
+      <select name="gender" id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <!-- Tambahkan opsi peran lainnya jika diperlukan -->
+      </select>
+      <br>
+      <br>
 
-            <label for="password">Password</label>
-            <input name="password" type="text" value="{{ $backupPass }}" />
-            <br><br>
+      <label for="fullname">Full Name</label>
+      <input name="fullname" type="text" value="{{ $data->fullname }}" />
+      <br><br>
 
-            <label for="gender">Gender</label>
-            <select name="gender" id="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <!-- Tambahkan opsi peran lainnya jika diperlukan -->
-            </select>
-            <br>
-            <br>
+      <label for="nick_name">Nick Name</label>
+      <input name="nick_name" type="text" value="{{ $data->nick_name }}" />
+      <br><br>
 
-            <label for="fullname">Full Name</label>
-            <input name="fullname" type="text" value="{{ $data->fullname }}" />
-            <br><br>
+      <label for="birthday">Birthday</label>
+      <input name="birthday" type="date" value="{{ $data->birthday }}" />
+      <br><br>
 
-            <label for="nick_name">Nick Name</label>
-            <input name="nick_name" type="text" value="{{ $data->nick_name }}" />
-            <br><br>
+      <label for="phone">Phone</label>
+      <input name="phone" type="text" value="{{ $data->phone }}" />
+      <br><br>
 
-            <label for="birthday">Birthday</label>
-            <input name="birthday" type="date" value="{{ $data->birthday }}" />
-            <br><br>
+      <label for="profile_picture">Profile Picture</label>
+      <input name="profile_picture" type="file" />
+      <br><br>
 
-            <label for="phone">Phone</label>
-            <input name="phone" type="text" value="{{ $data->phone }}" />
-            <br><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
 
-            <label for="profile_picture">Profile Picture</label>
-            <input name="profile_picture" type="file" />
-            <br><br>
 
-            <button type="submit">Submit</button>
-        </form>
-    @endsection
+<!-- PAGE CONTENT ENDS -->
+@endsection
 @endif

@@ -57,7 +57,7 @@ Route::prefix('owner')->group(function () {
     Route::get('/talent/{id}/detail', [TalentController::class, 'show'])->name('owner.talent.detail');
     Route::get('/talent/{id}/edit', [TalentController::class, 'edit'])->name('owner.talent.edit');
     Route::put('/talent/{id}/edit', [TalentController::class, 'update'])->name('owner.talent.update');
-    Route::get('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('owner.talent.destroy');
+    Route::delete('/talent/{id}/destroy', [TalentController::class, 'destroy'])->name('owner.talent.destroy');
     // order-detail
     Route::get('/order-detail', [OrderDetailController::class, 'index'])->name('owner.order.detail.index');
     Route::get('/order-detail/create', [OrderDetailController::class, 'create'])->name('owner.order.detail.create');

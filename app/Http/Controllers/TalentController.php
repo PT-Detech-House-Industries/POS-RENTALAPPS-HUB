@@ -118,7 +118,7 @@ class TalentController extends Controller
                 ]);
 
                 if ($validator->fails()) {
-                    return redirect()->route('client.create') // Ganti dengan rute yang sesuai
+                    return redirect()->route('owner.talent.create') // Ganti dengan rute yang sesuai
                         ->withErrors($validator)
                         ->withInput();
                 }
