@@ -30,7 +30,7 @@
 
       <span class="col-sm-6">
         <label class="pull-right inline">
-          <a href="{{ route('owner.talent.detail',[$data->id]) }}" class="btn btn-warning btn-minier">
+          <a href="{{ route('owner.talent.detail',[$data->id]) }}" class="btn btn-info btn-minier">
             Kembali
           </a>
         </label>

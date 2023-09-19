@@ -33,7 +33,7 @@
           <a href="{{ route('owner.talent.create') }}" class="btn btn-success btn-minier">
             Tambah Data
           </a>
-          <a href="{{ route('dashboard') }}" class="btn btn-warning btn-minier">
+          <a href="{{ route('dashboard') }}" class="btn btn-info btn-minier">
             Kembali
           </a>
         </label>

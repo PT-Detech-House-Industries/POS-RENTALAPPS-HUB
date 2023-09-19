@@ -267,8 +267,8 @@ class TalentController extends Controller
                     $namafile = $request->input('nick_name');
                     
                     $gambar = $request->file('profile_picture');
-                    $namaGambar = time() . '-' . $gambar->getClientOriginalName();
-                    $path = 'foto-produk/' . $namafile . '/'; // Path penyimpanan
+                    $namaGambar = time() . '_' . $gambar->getClientOriginalName(); // harusnya slug
+                    $path = 'foto_user/'.$id.'_'.$namafile.'/'.'profile/'; // Path penyimpanan
                 
                     // $gambar->move($path, $namaGambar, 'public');
                     // $this->createDirectoryIfNotExists(public_path($path));
@@ -284,7 +284,7 @@ class TalentController extends Controller
                         $constraint->upsize();
                     })
                     ->encode('jpg', 75)
-                    ->save(public_path('foto-produk/'.$namafile.'/' . $namaGambar)); 
+                    ->save(public_path('foto_user/'.$id.'_'.$namafile.'/'.'profile/'. $namaGambar)); 
                     
                     // Cek apakah direktori sudah ada, jika belum, buat direktori baru
                     // if (!Storage::exists($path)) {

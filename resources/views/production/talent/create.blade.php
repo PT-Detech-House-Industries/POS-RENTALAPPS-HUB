@@ -31,7 +31,7 @@
 
       <span class="col-sm-6">
         <label class="pull-right inline">
-          <a href="{{ route('owner.talent.index') }}" class="btn btn-warning btn-minier">
+          <a href="{{ route('owner.talent.index') }}" class="btn btn-info btn-minier">
             Kembali
           </a>
         </label>
