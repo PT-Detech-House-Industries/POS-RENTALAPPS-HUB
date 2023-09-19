@@ -30,7 +30,8 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/waktu', [WaktuController::class, 'berhasil']);
+Route::get('/waktu', [WaktuController::class, 'tombol']);
+Route::post('/waktu', [WaktuController::class, 'berhasil']);
 
 Route::get('/create-role', [RoleController::class, 'createRole']);
 
