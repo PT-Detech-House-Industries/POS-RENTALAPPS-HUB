@@ -16,7 +16,7 @@ class WaktuController extends Controller
     {
         // Jadi, di Indonesia terdapat tiga zona waktu utama: WIB (Western Indonesia Time) yang digunakan di Asia/Jakarta, WITA (Central Indonesia Time) yang digunakan di Asia/Makassar, dan WIT (Eastern Indonesia Time) yang digunakan di Asia/Jayapura. Perbedaan antara zona waktu-zona ini biasanya adalah beberapa jam.
         $ipAddress  = $request->ip();
-        return $ipAddress;
+        // return $ipAddress;
         if ($position = Location::get($ipAddress)) {
             // Successfully retrieved position.
             // $dataTimezone = $position->timezone;

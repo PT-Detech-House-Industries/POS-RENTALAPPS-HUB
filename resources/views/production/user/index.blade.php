@@ -22,7 +22,61 @@
 @endsection
 
 @section('main')
-<h3><a href="/">back</a></h3>
+<!-- PAGE CONTENT BEGINS -->
+<div class="row">
+  <div class="col-xs-12">
+    <h3 class="row header smaller lighter purple">
+      <span class="col-sm-6"> TABEL </span><!-- /.col -->
+
+      <span class="col-sm-6">
+        <label class="pull-right inline">
+          <a href="{{ route('owner.user.create') }}" class="btn btn-success btn-minier">
+            Tambah Data
+          </a>
+          <a href="{{ route('dashboard') }}" class="btn btn-info btn-minier">
+            Kembali
+          </a>
+        </label>
+      </span><!-- /.col -->
+    </h3><!-- /.row -->
+
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="thin-border-bottom">
+        <tr>
+          <th>id</th>
+          <th>
+            <i class="ace-icon fa fa-user"></i>
+            Nama
+          </th>
+          <th>Role</th>
+          <th>
+            <i>@</i>
+            AKSI
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @foreach($data as $d)
+        <tr>
+          <td>{{ $d->id }}</td>
+          <td>{{ $d->name }}</td>
+          <td>{{ $d->role }}</td>
+          <td>
+            <a href="{{ route('owner.user.detail',[$d->id]) }}">
+              Klik
+            </a>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<!-- PAGE CONTENT ENDS -->
+
+<!-- <h3><a href="/">back</a></h3>
 <a href="{{ route('owner.user.create') }}">tambah data</a>
 <table>
   <thead>
@@ -45,7 +99,7 @@
     <td><a href="{{ route('owner.user.destroy',[$d->id]) }}">Hapus</a></td>
   </tr>
   @endforeach
-</table>
+</table> -->
 @endsection
 
 @push('script')

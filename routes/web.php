@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WaktuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileAccountController;
@@ -46,11 +47,30 @@ Route::get('/auth/facebook/callback', [AuthController::class, 'handleFacebookCal
 // Route::get('/talent/role/{role}', [TalentController::class, 'index'])->name('talent.index');
 // });
 
+// // admin role
+// // talent
+// Route::get('admin/talent/service/', 'AdminController@serviceTalentIndex'); // masih belum di set url
+// Route::get('admin/talent/payment/', 'AdminController@paymentTalentIndex')->name('admin.tp.index'); // masih belum di set url
+// Route::get('admin/talent/payment/create', 'AdminController@paymentTalentCreate')->name('admin.tp.create');
+// Route::post('admin/talent/payment/create', 'AdminController@paymentTalentStore')->name('admin.tp.create');
+// // client
+// Route::get('admin/client/payment/', 'AdminController@paymentClientIndex');
+// // order
+// Route::get('admin/order/service', 'AdminController@orderServiceIndex')->name('admin.os.index'); //done view
+// Route::post('admin/order/temp', 'AdminController@orderTempCreate')->name('admin.ot.create'); //done proses
+// Route::delete('admin/order/temp/delete/{idTemp}', 'AdminController@orderTempDelete')->name('admin.ot.delete');
+// Route::post('admin/order/service/create', 'AdminController@orderServiceCreate')->name('admin.os.create'); //done proses
+// Route::get('admin/order/service/detail/{id}', 'AdminController@orderSeviceDetail')->name('admin.os.detail');
+
+
 // starter page
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // route untuk owner
 Route::prefix('owner')->group(function () {
+    Route::get('admin/talent/payment/', [AdminController::class, 'paymentTalentIndex'])->name('admin.tp.index'); // masih belum di set url
+    Route::get('admin/talent/payment/create', [AdminController::class, 'paymentTalentCreate'])->name('admin.tp.create');
+    Route::get('admin/order/service', [AdminController::class, 'orderServiceIndex'])->name('admin.os.index'); //done view
     // talent
     Route::get('/talent', [TalentController::class, 'index'])->name('owner.talent.index');
     Route::get('/talent/create', [TalentController::class, 'create'])->name('owner.talent.create');
@@ -99,7 +119,7 @@ Route::prefix('owner')->group(function () {
     Route::get('/client/{id}/detail', [ClientController::class, 'show'])->name('owner.client.detail');
     Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('owner.client.edit');
     Route::put('/client/{id}/edit', [ClientController::class, 'update'])->name('owner.client.update');
-    Route::get('/client/{id}/destroy', [ClientController::class, 'destroy'])->name('owner.client.destroy');
+    Route::delete('/client/{id}/destroy', [ClientController::class, 'destroy'])->name('owner.client.destroy');
     // user
     Route::get('/user', [UserController::class, 'index'])->name('owner.user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('owner.user.create');
@@ -107,7 +127,7 @@ Route::prefix('owner')->group(function () {
     Route::get('/user/{id}/detail', [UserController::class, 'show'])->name('owner.user.detail');
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('owner.user.edit');
     Route::put('/user/{id}/edit', [UserController::class, 'update'])->name('owner.user.update');
-    Route::get('/user/{id}/destroy', [UserController::class, 'destroy'])->name('owner.user.destroy');
+    Route::delete('/user/{id}/destroy', [UserController::class, 'destroy'])->name('owner.user.destroy');
 
 })->middleware(['auth', 'verified','role:owner']);
 

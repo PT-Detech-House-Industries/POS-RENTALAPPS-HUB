@@ -259,6 +259,6 @@ class ClientController extends Controller
         // Hapus data dari tabel Client
         $client->delete();
 
-        return Redirect::route('client.index');
+        return Redirect::route('owner.client.index');
     }
 }

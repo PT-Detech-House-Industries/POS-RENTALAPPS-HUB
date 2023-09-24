@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+// model
 use App\Models\User;
 use App\Models\Talent;
 use App\Models\Client;
@@ -20,10 +21,14 @@ use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
+// lib time
 use Carbon\Carbon;
+// lib compress image
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+// lib find location ip
+use Stevebauman\Location\Facades\Location;
 
 class DashboardController extends Controller
 {

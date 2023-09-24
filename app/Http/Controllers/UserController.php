@@ -76,7 +76,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('user.create') // Ganti dengan rute yang sesuai
+            return redirect()->route('owner.user.create') // Ganti dengan rute yang sesuai
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -84,12 +84,14 @@ class UserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role,
+            // 'role' => $request->role,
             'password' => Hash::make($request->password),
             'backup_password' => Crypt::encrypt($request->password),
         ]);
 
-        return Redirect::route('user.index');
+        Alert::success('Success', 'Data Anda berhasil ditambah.')->autoclose(3000);
+
+        return Redirect::route('owner.user.index');
         // return "bercanda";
     }
 
@@ -175,6 +177,6 @@ class UserController extends Controller
         $data = User::findOrFail($id);
         $data->delete();
 
-        return Redirect::route('user.index');
+        return Redirect::route('owner.user.index');
     }
 }
