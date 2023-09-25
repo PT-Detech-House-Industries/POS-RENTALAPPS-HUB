@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/profile-account', [ProfileAccountController::class, 'index']);
 Route::put('/profile-account/{id}/update', [ProfileAccountController::class, 'update']);
 // talent
-Route::get('/talent', [TalentController::class, 'index']);
+// Route::get('/talent', [TalentController::class, 'index']);
 Route::post('/talent/store', [TalentController::class, 'store']);
 Route::get('/talent/{id}/show', [TalentController::class, 'show']);
 Route::put('/talent/{id}/update', [TalentController::class, 'update']);
@@ -34,3 +34,7 @@ Route::delete('/talent/{id}/delete', [TalentController::class, 'destroy']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'store']);
 // Route::get('/login/show', [AuthController::class, 'show']);
+
+Route::middleware('auth:api')->group( function () {
+    Route::get('/talent', [TalentController::class, 'index']);
+});
