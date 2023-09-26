@@ -9,51 +9,48 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Laravel\Passport\RefreshToken;
+use Laravel\Passport\Token;
 
 class AuthController extends BaseController
 {
+    protected $user;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+
+            $this->user = 'Auth::user()';
+            return $next($request);
+            
+        });
+    }
+
     public function login(Request $request)
     {
       try {
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
+        $credentials = $request->only('email', 'password');
+
+        if(Auth::attempt($credentials))
+        { 
 
           $user = Auth::user(); 
-
-          $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-
+          $role = Auth::user()->role;
+          $success['token'] =  $user->createToken($role)-> accessToken; 
           $success['name'] =  $user->name;
-
- 
 
           return $this->sendResponse($success, 'User login successfully.');
 
-      } 
-
-      else{ 
+        } else { 
 
           return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
-
-      } 
-
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // Jika autentikasi berhasil, kembalikan respons berhasil
-            $user = Auth::user();
-
-            return response()->json([
-              'message' => 'Login berhasil',
-              'data' => [
-                'name' => $user->name,
-                'email' => $user->email,
-                // tambahkan properti lain yang ingin Anda tampilkan
-              ]
-            ], 200);
-        } else {
-            // Jika autentikasi gagal, kembalikan pesan error
-            return response()->json(['message' => 'Gagal login'], 401);
-        }
+        } 
 
         Auth::login($data);
 
@@ -73,25 +70,43 @@ class AuthController extends BaseController
         ], 500);
       }
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function logout(Request $request)
     {
-        //
-        $data = User::all();
-        return response()->json($data);
+        try {
+          
+          Auth::user()->token()->revoke();
+          // return dd($this->user);
+
+          // $user = Auth::guard('web')->logout();
+
+          // $user->tokens->each(function ($token, $key) {
+          //     $token->delete();
+          // });
+          
+          // $request->session()->invalidate();
+
+          // $request->session()->regenerateToken();
+          
+          
+          // Auth::logout();
+
+          return response()->json([
+            'status' => 200,
+            'message' => 'User logged out successfully.',
+          ], 200);
+
+        } catch (\Exception $e) {
+            
+          return response()->json([
+            'status' => 'error',
+            'message' => 'Gagal logout',
+            'error' => $e->getMessage(),
+          ], 500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function register(Request $request)
     {
         //
         // $request->validate([
@@ -138,41 +153,5 @@ class AuthController extends BaseController
         
         // return response()->json($data, 201);
         // return response()->json(['message' => 'Akun berhasil dibuat'], 201);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        $data = User::all();
-        return response()->json($data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

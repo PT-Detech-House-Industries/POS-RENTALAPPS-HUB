@@ -32,9 +32,10 @@ Route::put('/talent/{id}/update', [TalentController::class, 'update']);
 Route::delete('/talent/{id}/delete', [TalentController::class, 'destroy']);
 // auth
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'store']);
+Route::post('/register', [AuthController::class, 'register']);
 // Route::get('/login/show', [AuthController::class, 'show']);
 
 Route::middleware('auth:api')->group( function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/talent', [TalentController::class, 'index']);
 });
